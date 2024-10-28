@@ -115,8 +115,7 @@ function createBarChartRace(data, top_n, tickDuration) {
         .attr('class', 'label')
         .attr('x', d => x(d.value) - 8)
         .attr('y', d => y(d.rank) + ((y(1) - y(0)) / 2) + 1)
-        .style('text-anchor', 'end')
-        .html(d => d.name);
+        .style('text-anchor', 'end');
 
     svg.selectAll('text.valueLabel')
         .data(row_data, d => d.name)
@@ -125,7 +124,7 @@ function createBarChartRace(data, top_n, tickDuration) {
         .attr('class', 'valueLabel')
         .attr('x', d => x(d.value) + 5)
         .attr('y', d => y(d.rank) + ((y(1) - y(0)) / 2) + 1)
-        .text(d => d3.format(',.0f')(d.lastValue));
+        .text(d => d.name);
 
     // svg.append('rect')
     //     .attr('y', height - margin.bottom)
@@ -200,7 +199,6 @@ function createBarChartRace(data, top_n, tickDuration) {
             .attr('x', d => x(d.value) - 8)
             .attr('y', d => y(top_n + 1) + ((y(1) - y(0)) / 2))
             .style('text-anchor', 'end')
-            .html(d => d.name)
             .transition()
             .duration(tickDuration)
             .ease(d3.easeLinear)
@@ -229,7 +227,7 @@ function createBarChartRace(data, top_n, tickDuration) {
             .attr('class', 'valueLabel')
             .attr('x', d => x(d.value) + 5)
             .attr('y', d => y(top_n + 1))
-            .text(d => d3.format(',.0f')(d.lastValue))
+            .text(d => d.name)
             .transition()
             .duration(tickDuration)
             .ease(d3.easeLinear)
@@ -241,12 +239,7 @@ function createBarChartRace(data, top_n, tickDuration) {
             .ease(d3.easeLinear)
             .attr('x', d => x(d.value) + 5)
             .attr('y', d => y(d.rank) + ((y(1) - y(0)) / 2) + 1)
-            .tween("text", function (d) {
-                let i = d3.interpolateNumber(d.lastValue, d.value);
-                return function (t) {
-                    this.textContent = d3.format(',.0f')(i(t));
-                };
-            });
+            .text(d => d.name);
 
 
         valueLabels

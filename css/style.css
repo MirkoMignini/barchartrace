@@ -50,8 +50,9 @@ text {
 }
 
 text.valueLabel {
-    font-weight: 300;
-    fill: #505050;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 4px;
     dominant-baseline: middle;
 }
 
